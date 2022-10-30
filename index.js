@@ -7,7 +7,7 @@ import authRoute from "./routes/auth.js";
 import productsRoute from "./routes/products.js";
 import usersRoute from "./routes/users.js";
 
-
+const PORT = process.env.PORT || 5000;
 const app = express();
 dotenv.config()
 app.use(cors());
@@ -39,9 +39,11 @@ app.use((err, req, res, next) => {
     });
 });
 
+app.get('/', (req, res) => {
+    res.send("App is running")
+})
 
-
-app.listen(5000, () => {
+app.listen(process.env.PORT || PORT, () => {
     connect();
     console.log("Connected to backend.");
 });
